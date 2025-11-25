@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-int     ft_strlen(char *s)
+size_t	ft_strlen(char *s)
 {
-        int     i;
+        size_t  i;
         
         i = 0;
         while (s[i])
@@ -36,6 +36,24 @@ char	*ft_strchr(const char *s, int c)
 	if (s[i] == (unsigned char)c)
 		return ((char *)&s[i]);
 	return (0);
+}
+
+char	*ft_strdup(char *src)
+{
+	size_t		i;
+	char	*dest;
+
+	i = 0;
+	dest = malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (dest == 0)
+		return (0);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
