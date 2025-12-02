@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigondra <tigondra@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: tigondra <tigondra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 14:58:33 by tigondra          #+#    #+#             */
-/*   Updated: 2025/11/27 21:25:59 by tigondra         ###   ########.fr       */
+/*   Updated: 2025/12/02 15:51:45 by tigondra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*ft_free(char **s)
 
 static char	*fill_stash(int fd, char *stash)
 {
-	int		bytes;
+	ssize_t	bytes;
 	char	*buf;
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
