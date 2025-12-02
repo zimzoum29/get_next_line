@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigondra <tigondra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 14:58:33 by tigondra          #+#    #+#             */
-/*   Updated: 2025/12/02 16:11:53 by tigondra         ###   ########.fr       */
+/*   Updated: 2025/12/02 16:13:56 by tigondra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_free(char **s)
 {
@@ -83,17 +83,17 @@ static char	*trim_stash(char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash = fill_stash(fd, stash);
-	if (!stash)
+	stash[fd] = fill_stash(fd, stash[fd]);
+	if (!stash[fd])
 		return (NULL);
-	line = extract_line(stash);
+	line = extract_line(stash[fd]);
 	if (!line)
-		return (ft_free(&stash));
-	stash = trim_stash(stash);
+		return (ft_free(&stash[fd]));
+	stash[fd] = trim_stash(stash[fd]);
 	return (line);
 }
